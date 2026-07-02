@@ -1,0 +1,405 @@
+.section {
+  --frame-light: #8f6a4a;
+  --frame-dark: #3d2a20;
+  --frame-shadow: #2a1a12;
+  --board-top: #2e2e2e;
+  --board-mid: #1c1c1c;
+  --board-bottom: #101010;
+  --board-grain: #080808;
+  --chalk: #f8f5f0;
+  --chalk-muted: #ddd8cf;
+  --chalk-accent: #f0d4b0;
+  --chalk-sage: #c8d8b8;
+  --chalk-dust: rgba(248, 245, 240, 0.09);
+  --chalk-smudge: rgba(248, 245, 240, 0.05);
+  --tray: #5c4332;
+
+  padding: clamp(80px, 10vw, 110px) 1.5rem;
+  background: var(--bg);
+  position: relative;
+}
+
+:global([data-theme="dark"]) .section {
+  --frame-light: #5c4332;
+  --frame-dark: #1a120e;
+  --frame-shadow: #000000;
+  --board-top: #222222;
+  --board-mid: #141414;
+  --board-bottom: #0a0a0a;
+  --board-grain: #030303;
+  --chalk: #f2efe8;
+  --chalk-muted: #cfc9be;
+  --chalk-accent: #e8c9a0;
+  --chalk-sage: #b0c4a0;
+  --chalk-dust: rgba(242, 239, 232, 0.07);
+  --chalk-smudge: rgba(242, 239, 232, 0.04);
+  --tray: #3d2a20;
+}
+
+.inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.frame {
+  position: relative;
+  padding: 14px;
+  border-radius: 6px;
+  background: linear-gradient(180deg, var(--frame-light), var(--frame-dark));
+  box-shadow:
+    0 28px 64px color-mix(in srgb, var(--frame-shadow) 45%, transparent),
+    0 8px 24px color-mix(in srgb, var(--frame-shadow) 25%, transparent),
+    inset 0 1px 0 color-mix(in srgb, #fff 12%, transparent);
+}
+
+.frame::before,
+.frame::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #c9b08a, #5c4332 70%);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.25);
+  z-index: 2;
+}
+
+.frame::before {
+  top: 18px;
+  left: 18px;
+}
+
+.frame::after {
+  top: 18px;
+  right: 18px;
+}
+
+.board {
+  position: relative;
+  border-radius: 3px;
+  border: 2px solid color-mix(in srgb, var(--frame-dark) 85%, #000);
+  background:
+    radial-gradient(ellipse 55% 35% at 12% 22%, var(--chalk-smudge), transparent 70%),
+    radial-gradient(ellipse 45% 30% at 78% 68%, var(--chalk-smudge), transparent 65%),
+    radial-gradient(ellipse 35% 25% at 45% 85%, var(--chalk-dust), transparent 60%),
+    radial-gradient(ellipse 90% 60% at 20% 15%, var(--chalk-dust), transparent 50%),
+    radial-gradient(ellipse 70% 50% at 85% 75%, var(--chalk-dust), transparent 45%),
+    radial-gradient(ellipse 40% 30% at 60% 40%, var(--chalk-dust), transparent 40%),
+    radial-gradient(circle at 30% 60%, var(--chalk-dust) 0, transparent 8%),
+    radial-gradient(circle at 70% 30%, var(--chalk-dust) 0, transparent 6%),
+    radial-gradient(circle at 90% 45%, var(--chalk-dust) 0, transparent 5%),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 2px,
+      color-mix(in srgb, var(--board-grain) 50%, transparent) 2px,
+      color-mix(in srgb, var(--board-grain) 50%, transparent) 3px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 48px,
+      color-mix(in srgb, #fff 1.5%, transparent) 48px,
+      color-mix(in srgb, #fff 1.5%, transparent) 49px
+    ),
+    linear-gradient(175deg, var(--board-top) 0%, var(--board-mid) 48%, var(--board-bottom) 100%);
+  box-shadow:
+    inset 0 0 120px color-mix(in srgb, #000 50%, transparent),
+    inset 0 2px 0 color-mix(in srgb, #fff 4%, transparent);
+  overflow: hidden;
+}
+
+.board::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.85;
+  mix-blend-mode: soft-light;
+}
+
+.board::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 28% 18% at 72% 18%, color-mix(in srgb, var(--chalk) 8%, transparent), transparent),
+    radial-gradient(ellipse 22% 14% at 18% 72%, color-mix(in srgb, var(--chalk) 6%, transparent), transparent),
+    radial-gradient(ellipse 18% 12% at 55% 48%, color-mix(in srgb, var(--chalk) 5%, transparent), transparent);
+  pointer-events: none;
+}
+
+.boardContent {
+  position: relative;
+  z-index: 2;
+  padding: clamp(36px, 5vw, 52px) clamp(28px, 4vw, 44px) clamp(28px, 4vw, 36px);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(32px, 5vw, 48px);
+}
+
+@media (min-width: 860px) {
+  .grid {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(36px, 4vw, 56px);
+    align-items: start;
+  }
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: "Patrick Hand", cursive;
+  font-size: clamp(16px, 2vw, 18px);
+  color: var(--chalk-accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  text-shadow:
+    0 0 1px color-mix(in srgb, var(--chalk-accent) 80%, transparent),
+    0 0 6px color-mix(in srgb, var(--chalk-accent) 35%, transparent),
+    1px 1px 0 color-mix(in srgb, #000 40%, transparent);
+  transform: rotate(-1deg);
+  opacity: 0.95;
+}
+
+.title {
+  font-family: "Caveat", cursive;
+  font-size: clamp(38px, 5.5vw, 56px);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--chalk);
+  margin: 0 0 20px;
+  text-shadow:
+    0 0 1px color-mix(in srgb, var(--chalk) 90%, transparent),
+    0 0 8px color-mix(in srgb, var(--chalk) 30%, transparent),
+    0 0 18px color-mix(in srgb, var(--chalk) 12%, transparent),
+    1px 1px 0 color-mix(in srgb, #000 35%, transparent),
+    -0.5px 0 0 color-mix(in srgb, var(--chalk) 20%, transparent);
+  transform: rotate(-0.5deg);
+}
+
+.title::after {
+  content: "";
+  display: block;
+  width: min(280px, 70%);
+  height: 4px;
+  margin-top: 10px;
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--chalk) 45%, transparent) 15%,
+    color-mix(in srgb, var(--chalk) 55%, transparent) 85%,
+    transparent
+  );
+  filter: blur(0.8px);
+  transform: rotate(-0.8deg);
+  opacity: 0.7;
+}
+
+.titleAccent {
+  color: var(--chalk-sage);
+  display: block;
+  margin-top: 2px;
+  transform: rotate(0.8deg);
+}
+
+.lead {
+  font-family: "Patrick Hand", cursive;
+  font-size: clamp(17px, 2vw, 20px);
+  line-height: 1.65;
+  color: var(--chalk-muted);
+  margin: 0 0 16px;
+  text-shadow:
+    0 0 1px color-mix(in srgb, var(--chalk-muted) 60%, transparent),
+    0 0 5px color-mix(in srgb, var(--chalk) 15%, transparent),
+    1px 1px 0 color-mix(in srgb, #000 30%, transparent);
+  opacity: 0.92;
+}
+
+.lead:last-of-type {
+  margin-bottom: 28px;
+}
+
+.values {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.valueItem {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-family: "Patrick Hand", cursive;
+  font-size: clamp(16px, 1.8vw, 19px);
+  line-height: 1.55;
+  color: var(--chalk-muted);
+  text-shadow:
+    0 0 1px color-mix(in srgb, var(--chalk-muted) 50%, transparent),
+    0 0 4px color-mix(in srgb, var(--chalk) 12%, transparent),
+    1px 1px 0 color-mix(in srgb, #000 28%, transparent);
+  opacity: 0.9;
+}
+
+.valueMark {
+  flex-shrink: 0;
+  font-family: "Caveat", cursive;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--chalk-sage);
+  line-height: 1.2;
+  margin-top: -2px;
+  text-shadow:
+    0 0 4px color-mix(in srgb, var(--chalk-sage) 40%, transparent),
+    0 0 10px color-mix(in srgb, var(--chalk-sage) 20%, transparent);
+}
+
+.sidePanel {
+  padding: clamp(20px, 3vw, 28px);
+  border-radius: 4px;
+  border: 2px dashed color-mix(in srgb, var(--chalk) 28%, transparent);
+  background: color-mix(in srgb, #fff 3%, transparent);
+  transform: rotate(0.6deg);
+  box-shadow: inset 0 0 40px color-mix(in srgb, var(--chalk) 4%, transparent);
+}
+
+@media (min-width: 860px) {
+  .sidePanel {
+    margin-top: 8px;
+  }
+}
+
+.sideTitle {
+  font-family: "Caveat", cursive;
+  font-size: clamp(28px, 3.5vw, 34px);
+  font-weight: 700;
+  color: var(--chalk);
+  margin: 0 0 22px;
+  text-shadow:
+    0 0 1px color-mix(in srgb, var(--chalk) 80%, transparent),
+    0 0 8px color-mix(in srgb, var(--chalk) 25%, transparent),
+    1px 1px 0 color-mix(in srgb, #000 32%, transparent);
+  transform: rotate(-0.8deg);
+}
+
+.philosophyItem {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid color-mix(in srgb, var(--chalk) 16%, transparent);
+}
+
+.philosophyItem:last-of-type {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.philosophyLabel {
+  font-family: "Patrick Hand", cursive;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--chalk-accent);
+  margin-bottom: 4px;
+  text-shadow:
+    0 0 4px color-mix(in srgb, var(--chalk-accent) 35%, transparent),
+    0 0 10px color-mix(in srgb, var(--chalk-accent) 15%, transparent);
+}
+
+.philosophyValue {
+  font-family: "Caveat", cursive;
+  font-size: clamp(20px, 2.4vw, 24px);
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--chalk);
+  text-shadow:
+    0 0 1px color-mix(in srgb, var(--chalk) 70%, transparent),
+    0 0 6px color-mix(in srgb, var(--chalk) 20%, transparent),
+    1px 1px 0 color-mix(in srgb, #000 28%, transparent);
+}
+
+.available {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 24px;
+  padding: 8px 16px 8px 12px;
+  border: 2px solid color-mix(in srgb, var(--chalk-sage) 45%, transparent);
+  border-radius: 999px;
+  font-family: "Patrick Hand", cursive;
+  font-size: 16px;
+  color: var(--chalk-sage);
+  text-shadow: 0 0 8px color-mix(in srgb, var(--chalk-sage) 20%, transparent);
+  transform: rotate(-1.2deg);
+}
+
+.availableDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--chalk-sage);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--chalk-sage) 50%, transparent);
+  animation: chalkPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes chalkPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.tray {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 10px 20px 14px;
+  background: linear-gradient(180deg, var(--tray), color-mix(in srgb, var(--tray) 80%, #000));
+  border-top: 2px solid color-mix(in srgb, #000 35%, transparent);
+  box-shadow: inset 0 2px 0 color-mix(in srgb, #fff 8%, transparent);
+}
+
+.chalkStick {
+  width: 28px;
+  height: 8px;
+  border-radius: 2px;
+  transform: rotate(-8deg);
+  box-shadow: 1px 2px 3px color-mix(in srgb, #000 35%, transparent);
+}
+
+.chalkWhite {
+  background: linear-gradient(180deg, #f4efe6, #d8d0c4);
+}
+
+.chalkTerracotta {
+  background: linear-gradient(180deg, #c4896a, #a66b47);
+  transform: rotate(4deg);
+}
+
+.chalkSage {
+  background: linear-gradient(180deg, #9aad8e, #6b7f5e);
+  transform: rotate(-14deg);
+}
+
+.eraser {
+  width: 36px;
+  height: 14px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #c9a88a, #8b7355);
+  box-shadow: 1px 2px 4px color-mix(in srgb, #000 30%, transparent);
+  transform: rotate(2deg);
+}

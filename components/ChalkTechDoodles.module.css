@@ -1,0 +1,196 @@
+.layer {
+  --chalk: #f8f5f0;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.icon,
+.accent {
+  position: absolute;
+  color: color-mix(in srgb, var(--chalk) 78%, transparent);
+  opacity: 0.42;
+  filter:
+    drop-shadow(0 0 2px color-mix(in srgb, var(--chalk) 35%, transparent))
+    drop-shadow(0 0 8px color-mix(in srgb, var(--chalk) 14%, transparent));
+}
+
+.icon svg,
+.accent svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  fill: currentColor;
+}
+
+.react {
+  top: 5%;
+  left: 3%;
+  width: 48px;
+  transform: rotate(-12deg);
+}
+
+.java {
+  top: 7%;
+  right: 4%;
+  width: 44px;
+  transform: rotate(8deg);
+}
+
+.linux {
+  top: 20%;
+  left: 2%;
+  width: 44px;
+  transform: rotate(-5deg);
+  opacity: 0.38;
+}
+
+.node {
+  top: 16%;
+  right: 3%;
+  width: 46px;
+  transform: rotate(6deg);
+}
+
+.typescript {
+  top: 38%;
+  left: 1.5%;
+  width: 44px;
+  transform: rotate(-8deg);
+  opacity: 0.38;
+}
+
+.nextjs {
+  bottom: 24%;
+  right: 5%;
+  width: 44px;
+  transform: rotate(-6deg);
+}
+
+.docker {
+  bottom: 14%;
+  left: 6%;
+  width: 50px;
+  transform: rotate(10deg);
+}
+
+.aws {
+  bottom: 30%;
+  right: 2%;
+  width: 56px;
+  transform: rotate(4deg);
+  opacity: 0.38;
+}
+
+.postgres {
+  top: 30%;
+  right: 1.5%;
+  width: 44px;
+  transform: rotate(12deg);
+  opacity: 0.36;
+}
+
+.python {
+  bottom: 42%;
+  left: 4%;
+  width: 44px;
+  transform: rotate(-14deg);
+}
+
+.git {
+  top: 52%;
+  right: 2%;
+  width: 40px;
+  transform: rotate(-4deg);
+  opacity: 0.36;
+}
+
+.spark1 {
+  top: 12%;
+  left: 26%;
+  width: 14px;
+  opacity: 0.2;
+  transform: rotate(15deg);
+}
+
+.spark2 {
+  bottom: 40%;
+  left: 20%;
+  width: 12px;
+  opacity: 0.16;
+  transform: rotate(-20deg);
+}
+
+.spark3 {
+  top: 66%;
+  right: 16%;
+  width: 13px;
+  opacity: 0.18;
+  transform: rotate(8deg);
+}
+
+.dot1 {
+  top: 9%;
+  left: 16%;
+  width: 6px;
+  opacity: 0.22;
+}
+
+.dot2 {
+  top: 46%;
+  left: 10%;
+  width: 5px;
+  opacity: 0.18;
+}
+
+.dot3 {
+  top: 24%;
+  right: 20%;
+  width: 6px;
+  opacity: 0.2;
+}
+
+.dot4 {
+  bottom: 18%;
+  right: 26%;
+  width: 5px;
+  opacity: 0.16;
+}
+
+.dot5 {
+  bottom: 46%;
+  left: 5%;
+  width: 4px;
+  opacity: 0.18;
+}
+
+@media (max-width: 860px) {
+  .icon,
+  .accent {
+    opacity: 0.22;
+  }
+
+  .linux,
+  .typescript,
+  .postgres,
+  .git,
+  .python {
+    display: none;
+  }
+
+  .react,
+  .node,
+  .docker {
+    width: 34px;
+  }
+}
+
+@media (max-width: 520px) {
+  .aws,
+  .java,
+  .nextjs {
+    display: none;
+  }
+}

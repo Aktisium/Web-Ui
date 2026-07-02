@@ -1,0 +1,222 @@
+.nav {
+  --wood-edge: #8b7355;
+  --wood-front: #5c4332;
+  --brass-light: #e8c9a0;
+  --brass-mid: #b8956b;
+  --brass-dark: #8b7355;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding: 0 clamp(1rem, 3vw, 2rem);
+  transition:
+    background 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    backdrop-filter 0.35s ease;
+  background: color-mix(in srgb, var(--bg) 42%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid transparent;
+}
+
+:global([data-theme="dark"]) .nav {
+  --wood-edge: #5c4d3e;
+  --wood-front: #3d2a20;
+  --brass-light: #d4ad7a;
+  --brass-mid: #a08968;
+  --brass-dark: #6f5a42;
+}
+
+.scrolled {
+  background: color-mix(in srgb, var(--surface) 88%, var(--bg));
+  backdrop-filter: blur(14px);
+  border-bottom-color: var(--border);
+  box-shadow: 0 8px 28px color-mix(in srgb, var(--text) 6%, transparent);
+}
+
+.inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+  gap: 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.nameplate {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(17px, 2vw, 19px);
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: 0.12em;
+  color: var(--brass-light);
+  padding: 7px 16px;
+  border-radius: 3px;
+  border: 1px solid color-mix(in srgb, var(--brass-mid) 55%, transparent);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--wood-front) 88%, #000),
+    color-mix(in srgb, var(--wood-front) 96%, #000)
+  );
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #fff 10%, transparent),
+    0 2px 8px color-mix(in srgb, var(--wood-front) 25%, transparent);
+  text-shadow: 0 1px 2px color-mix(in srgb, #000 35%, transparent);
+  transition: transform 0.2s ease;
+}
+
+.brand:hover .nameplate {
+  transform: translateY(-1px);
+}
+
+.links {
+  display: none;
+  align-items: center;
+  gap: 4px;
+}
+
+@media (min-width: 768px) {
+  .links {
+    display: flex;
+  }
+}
+
+.link {
+  font-family: "Outfit", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 4px;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.link:hover {
+  color: var(--text);
+  background: color-mix(in srgb, var(--accent) 6%, transparent);
+}
+
+.actions {
+  display: none;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (min-width: 768px) {
+  .actions {
+    display: flex;
+  }
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 18px;
+  border-radius: 4px;
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  background: linear-gradient(
+    180deg,
+    var(--accent),
+    color-mix(in srgb, var(--accent) 84%, #2a1a12)
+  );
+  color: #fffbf6;
+  font-family: "Outfit", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow: 0 3px 12px color-mix(in srgb, var(--accent) 22%, transparent);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 16px color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+.mobileBar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (min-width: 768px) {
+  .mobileBar {
+    display: none;
+  }
+}
+
+.menuBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 4px;
+  border: 1px solid var(--border-strong);
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.menuBtn:hover {
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+  background: var(--surface2);
+}
+
+.mobileMenu {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 0 20px;
+  animation: slideDown 0.25s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobileLink {
+  display: block;
+  padding: 14px 4px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 20px;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  transition: color 0.2s ease, padding-left 0.2s ease;
+}
+
+.mobileLink:hover {
+  color: var(--accent);
+  padding-left: 8px;
+}
+
+.mobileCta {
+  display: block;
+  margin-top: 18px;
+  text-align: center;
+}

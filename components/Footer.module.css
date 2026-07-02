@@ -1,0 +1,186 @@
+.footer {
+  --wood-front: #5c4332;
+  --wood-dark: #3d2a20;
+  --wood-edge: #8b7355;
+  --brass-light: #e8c9a0;
+  --brass-mid: #b8956b;
+  --plank-text: #f2ebe2;
+  --plank-muted: #c9beb0;
+
+  padding: 0 1.5rem clamp(28px, 4vw, 40px);
+  background: var(--bg);
+}
+
+:global([data-theme="dark"]) .footer {
+  --wood-front: #3d2a20;
+  --wood-dark: #1a120e;
+  --wood-edge: #5c4d3e;
+  --brass-light: #d4ad7a;
+  --brass-mid: #a08968;
+  --plank-text: #f2ebe2;
+  --plank-muted: #a89b8c;
+}
+
+.plank {
+  max-width: 920px;
+  margin: 0 auto;
+  border-radius: 8px 8px 6px 6px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px color-mix(in srgb, var(--wood-dark) 18%, transparent);
+}
+
+.plankTop {
+  padding: clamp(28px, 4vw, 36px) clamp(24px, 4vw, 36px);
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, color-mix(in srgb, #fff 8%, transparent), transparent 55%),
+    linear-gradient(180deg, var(--wood-front), var(--wood-dark));
+  border: 1px solid var(--wood-dark);
+  border-bottom: 2px solid var(--wood-edge);
+}
+
+.topRow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: clamp(20px, 3vw, 28px);
+  padding-bottom: clamp(20px, 3vw, 26px);
+  border-bottom: 1px solid color-mix(in srgb, var(--wood-edge) 45%, transparent);
+}
+
+@media (min-width: 720px) {
+  .topRow {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+  }
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (min-width: 720px) {
+  .brand {
+    align-items: flex-start;
+  }
+}
+
+.nameplate {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 18px;
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: 0.14em;
+  color: var(--brass-light);
+  padding: 6px 18px;
+  border-radius: 3px;
+  border: 1px solid color-mix(in srgb, var(--brass-mid) 50%, transparent);
+  background: color-mix(in srgb, var(--wood-dark) 40%, transparent);
+  text-shadow: 0 1px 2px color-mix(in srgb, #000 40%, transparent);
+}
+
+.tagline {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(16px, 2vw, 18px);
+  font-style: italic;
+  color: var(--plank-muted);
+  line-height: 1.5;
+  max-width: 280px;
+}
+
+.navLinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 6px;
+}
+
+@media (min-width: 720px) {
+  .navLinks {
+    justify-content: flex-end;
+    max-width: 420px;
+  }
+}
+
+.navLink {
+  font-family: "Outfit", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--plank-muted) 92%, #fff);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 3px;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.navLink:hover {
+  color: var(--brass-light);
+  background: color-mix(in srgb, #fff 6%, transparent);
+}
+
+.navDot {
+  color: color-mix(in srgb, var(--wood-edge) 80%, transparent);
+  font-size: 10px;
+  user-select: none;
+  align-self: center;
+}
+
+@media (max-width: 719px) {
+  .navDot {
+    display: none;
+  }
+}
+
+.plankBottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px clamp(20px, 3vw, 28px);
+  background: color-mix(in srgb, var(--wood-dark) 92%, #000);
+  border: 1px solid var(--wood-dark);
+  border-top: none;
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .plankBottom {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+.copyright,
+.closing,
+.email {
+  font-family: "Outfit", sans-serif;
+  font-size: 12px;
+  color: color-mix(in srgb, var(--plank-muted) 85%, transparent);
+  margin: 0;
+}
+
+.closing {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--brass-mid);
+}
+
+.email {
+  color: var(--brass-light);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.email:hover {
+  opacity: 0.85;
+}
